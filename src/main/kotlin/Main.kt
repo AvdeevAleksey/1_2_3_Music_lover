@@ -21,7 +21,11 @@ fun takeMyData() {
 fun burnIt (itemPrice:Int, totalPrice:Int, musicLover:Boolean) {
     val result = if (musicLover) {
         val melomanPrice = totalPrice - totalPrice*0.05
-        melomanPrice - melomanPrice*0.01
+        if (melomanPrice > discountStart) {
+            melomanPrice - melomanPrice*0.01 - discount
+        } else {
+            melomanPrice - melomanPrice*0.01
+        }
     } else if (totalPrice > discountStart) totalPrice - discount else totalPrice
     print("Стоимость: $result")
 }
