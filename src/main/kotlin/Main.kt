@@ -1,25 +1,17 @@
-var itemPrice:Int = 0
-var itemCount:Int = 0
-var amountOfPreviousPurchases = 0
 const val discount:Int = 100
 const val discountStart:Int = 1000
-var musicLover:Boolean = false
 
 fun main() {
-    takeMyData()
+    print("Введите цену за музыкальный трек: ")
+    val itemPrice = readLine()!!.toInt()
+    print("Введите количество купленых треков: ")
+    val itemCount = readLine()!!.toInt()
+    print("Ведите сумму предыдущих покупок: ")
+    val amountOfPreviousPurchases = readLine()!!.toInt()
+    print("Введите 1 если Вы наш меломан и 0 если нет: ")
+    val musicLover:Boolean = readLine()!!.toInt()==1
     val totalPrice:Int = itemPrice * itemCount
     generalDiscountCalculation(amountOfPreviousPurchases,totalPrice,musicLover)
-}
-
-fun takeMyData() {
-    print("Введите цену за музыкальный трек: ")
-    itemPrice = readLine()!!.toInt()
-    print("Введите количество купленых треков: ")
-    itemCount = readLine()!!.toInt()
-    print("Ведите сумму предыдущих покупок: ")
-    amountOfPreviousPurchases = readLine()!!.toInt()
-    print("Введите 1 если Вы наш меломан и 0 если нет: ")
-    musicLover = if (readLine()!!.toInt()==1) {true} else {false}
 }
 
 fun generalDiscountCalculation (amountOfPreviousPurchases:Int, totalPriceGeneral:Int, musicLover:Boolean) {
