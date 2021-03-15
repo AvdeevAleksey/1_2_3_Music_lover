@@ -22,21 +22,20 @@ fun takeMyData() {
     musicLover = if (readLine()!!.toInt()==1) {true} else {false}
 }
 
-fun generalDiscountCalculation (amountOfPreviousPurchases:Int, totalPrice:Int, musicLover:Boolean) {
-    val result = if (amountOfPreviousPurchases < discountStart) {
-        melomanDiscountCalculation(totalPrice,musicLover)
-    } else if (amountOfPreviousPurchases < discountStart*10) {
-        melomanDiscountCalculation((totalPrice - discount),musicLover)
-    } else {
-        melomanDiscountCalculation((totalPrice*0.05).toInt(),musicLover)
-    }
-    print("Стоимость: $result")
+fun generalDiscountCalculation (amountOfPreviousPurchases:Int, totalPriceGeneral:Int, musicLover:Boolean) {
+    print("Стоимость: ${
+        if ((amountOfPreviousPurchases<discountStart*10 && amountOfPreviousPurchases>discountStart) || (totalPriceGeneral<discountStart*10 && totalPriceGeneral>discountStart)) {
+            melomanDiscountCalculation((totalPriceGeneral-discount),musicLover)
+        } else if (amountOfPreviousPurchases>discountStart*10 || totalPriceGeneral>discountStart*10) {
+            melomanDiscountCalculation(((totalPriceGeneral-totalPriceGeneral*0.05).toInt()),musicLover)
+        } else melomanDiscountCalculation(totalPriceGeneral,musicLover)
+    }")
 }
 
-fun melomanDiscountCalculation(totalPrice:Int, musicLover:Boolean): Int {
+fun melomanDiscountCalculation(totalPriceMeloman:Int, musicLover:Boolean): Int {
     return if (musicLover) {
-        (totalPrice - totalPrice * 0.01).toInt()
+        (totalPriceMeloman - totalPriceMeloman * 0.01).toInt()
     } else {
-        totalPrice
+        totalPriceMeloman
     }
 }
